@@ -20,16 +20,21 @@ public class CarrinhoController {
 
     @GetMapping
     public List<Carrinho> getAllCarrinho(){
-        return repository.findAll();
+        return service.getAllCarrinho();
     }
 
     @PostMapping
-    public void addProduto(Long idCarrinho, Long idProduto){
+    public Long createCarrinho(Carrinho carrinho){
+        return service.createCarrinho(carrinho);
+    }
+
+    @PostMapping("/{id}/{id_produto}")
+    public void addProduto(@PathVariable("id") Long idCarrinho,@PathVariable("id_produto") Long idProduto){
        service.addProduto(idCarrinho, idProduto);
     }
 
-    @DeleteMapping("/{id}")
-    public void removeProduto(Long idCarrinho,@PathVariable Long idProduto){
+    @DeleteMapping("/{id}/{id_produto}")
+    public void removeProduto(@PathVariable("id") Long idCarrinho,@PathVariable("id_produto") Long idProduto){
         service.removeProduto(idCarrinho, idProduto);
     }
 

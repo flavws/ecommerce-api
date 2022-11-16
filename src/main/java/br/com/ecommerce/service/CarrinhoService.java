@@ -7,6 +7,8 @@ import br.com.ecommerce.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CarrinhoService {
 
@@ -15,6 +17,15 @@ public class CarrinhoService {
 
     @Autowired
     private ProdutoRepository produtoRepository;
+
+    public Long createCarrinho(Carrinho carrinho){
+        Carrinho cart = repository.save(carrinho);
+        return cart.getIdCarrinho();
+    }
+
+    public List<Carrinho> getAllCarrinho(){
+        return repository.findAll();
+    }
 
     public void addProduto(Long idCarrinho, Long idProduto){
         Carrinho carrinho = repository.findById(idCarrinho).orElseThrow();
