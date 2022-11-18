@@ -1,12 +1,9 @@
 package br.com.ecommerce.controller;
 
 import br.com.ecommerce.model.Carrinho;
-import br.com.ecommerce.repository.CarrinhoRepository;
 import br.com.ecommerce.service.CarrinhoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,18 +17,15 @@ public class CarrinhoController {
     @Autowired
     private CarrinhoService service;
 
-    @Autowired
-    private CarrinhoRepository repository;
-
     @GetMapping("/carrinho")
-    @ApiOperation(value = "Lista todos os itens do carrinho.")
+    @ApiOperation(value = "Lista todos os carrinhos.")
     public List<Carrinho> getAllCarrinho(){
         return service.getAllCarrinho();
     }
 
     @PostMapping("/carrinho")
     @ApiOperation(value = "Inicializa um carrinho.")
-    public Long createCarrinho(Carrinho carrinho){
+    public Carrinho createCarrinho(Carrinho carrinho){
         return service.createCarrinho(carrinho);
     }
 

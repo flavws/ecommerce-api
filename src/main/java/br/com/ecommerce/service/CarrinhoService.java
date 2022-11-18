@@ -18,9 +18,9 @@ public class CarrinhoService {
     @Autowired
     private ProdutoRepository produtoRepository;
 
-    public Long createCarrinho(Carrinho carrinho){
+    public Carrinho createCarrinho(Carrinho carrinho){
         Carrinho cart = repository.save(carrinho);
-        return cart.getIdCarrinho();
+        return cart;
     }
 
     public List<Carrinho> getAllCarrinho(){
