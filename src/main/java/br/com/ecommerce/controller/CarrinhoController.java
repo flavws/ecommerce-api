@@ -1,6 +1,6 @@
 package br.com.ecommerce.controller;
 
-import br.com.ecommerce.model.Carrinho;
+import br.com.ecommerce.domain.carrinho.Carrinho;
 import br.com.ecommerce.service.CarrinhoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

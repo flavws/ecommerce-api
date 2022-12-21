@@ -1,4 +1,4 @@
-package br.com.ecommerce.model;
+package br.com.ecommerce.domain.produto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,12 +20,23 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProduto;
 
+    @Column(nullable = false)
     private String nomeProduto;
 
+    @Column(nullable = false)
     private BigDecimal precoProduto;
 
+    @Column(nullable = false)
     private Integer qtdeProduto;
 
+    @Column
     private String descricaoProduto;
 
+    public Produto(DadosCadastroProduto dados) {
+        this.nomeProduto = dados.nomeProduto();
+        this.precoProduto = dados.precoProduto();
+        this.qtdeProduto = dados.qtdeProduto();
+        this.descricaoProduto = dados.descricaoProduto();
+
+    }
 }

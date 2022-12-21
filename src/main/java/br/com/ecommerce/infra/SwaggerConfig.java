@@ -1,4 +1,4 @@
-package br.com.ecommerce.config;
+package br.com.ecommerce.infra;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

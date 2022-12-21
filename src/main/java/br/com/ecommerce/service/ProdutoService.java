@@ -1,9 +1,9 @@
 package br.com.ecommerce.service;
 
-import br.com.ecommerce.model.Produto;
-import br.com.ecommerce.repository.ProdutoRepository;
+import br.com.ecommerce.domain.produto.DadosCadastroProduto;
+import br.com.ecommerce.domain.produto.Produto;
+import br.com.ecommerce.domain.produto.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,8 +18,16 @@ public class ProdutoService {
         return produtoRepository.findAll();
     }
 
-    public Produto createProduto(Produto produto){
-        return produtoRepository.save(produto);
+    public Produto getProdutoById(Long id){
+        return produtoRepository.findById(id).get();
+    }
+
+    public List<Produto> getProdutoByName(String nomeProduto){
+        return produtoRepository.findByNomeProdutoLike(nomeProduto);
+    }
+
+    public Produto createProduto(DadosCadastroProduto dados){
+        return produtoRepository.save(new Produto(dados));
     }
 
     public Produto updateProduto(Long id, Produto produto){

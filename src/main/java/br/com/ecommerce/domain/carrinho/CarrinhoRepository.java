@@ -1,6 +1,5 @@
-package br.com.ecommerce.repository;
+package br.com.ecommerce.domain.carrinho;
 
-import br.com.ecommerce.model.Carrinho;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CarrinhoRepository extends JpaRepository<Carrinho, Long> {

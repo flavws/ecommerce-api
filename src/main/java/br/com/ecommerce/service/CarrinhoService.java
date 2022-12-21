@@ -1,9 +1,9 @@
 package br.com.ecommerce.service;
 
-import br.com.ecommerce.model.Carrinho;
-import br.com.ecommerce.model.Produto;
-import br.com.ecommerce.repository.CarrinhoRepository;
-import br.com.ecommerce.repository.ProdutoRepository;
+import br.com.ecommerce.domain.carrinho.Carrinho;
+import br.com.ecommerce.domain.produto.Produto;
+import br.com.ecommerce.domain.carrinho.CarrinhoRepository;
+import br.com.ecommerce.domain.produto.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +31,7 @@ public class CarrinhoService {
         Carrinho carrinho = repository.findById(idCarrinho).orElseThrow();
         Produto produto = produtoRepository.findById(idProduto).orElseThrow();
 
-        carrinho.getProdutos().add(produto);
+        carrinho.addProduto(produto);
 
         repository.save(carrinho);
     }
@@ -40,7 +40,7 @@ public class CarrinhoService {
         Carrinho carrinho = repository.findById(idCarrinho).orElseThrow();
         Produto produto = produtoRepository.findById(idProduto).orElseThrow();
 
-        carrinho.getProdutos().remove(produto);
+        carrinho.removeProduto(produto);
         repository.save(carrinho);
 
     }

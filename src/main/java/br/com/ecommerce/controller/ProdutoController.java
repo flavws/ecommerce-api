@@ -1,11 +1,10 @@
 package br.com.ecommerce.controller;
 
-import br.com.ecommerce.model.Produto;
+import br.com.ecommerce.domain.produto.DadosCadastroProduto;
+import br.com.ecommerce.domain.produto.Produto;
 import br.com.ecommerce.service.ProdutoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,10 +25,22 @@ public class ProdutoController {
         return produtoService.getAllProdutos();
     }
 
+    @GetMapping("/produto/{id}")
+    @ApiOperation(value = "Busca produto pelo id.")
+    public Produto getProdutoById(@PathVariable("id") Long id){
+        return produtoService.getProdutoById(id);
+    }
+
+    @GetMapping("/produto/")
+    @ApiOperation(value = "Busca produto pelo nome.")
+    public List<Produto> getProdutoByName(@RequestParam(value="name") String nomeProduto){
+        return produtoService.getProdutoByName(nomeProduto);
+    }
+
     @PostMapping("/produto")
     @ApiOperation(value = "Cria um produto.")
-    public Produto createProduto(@RequestBody Produto produto){
-        return produtoService.createProduto(produto);
+    public Produto createProduto(@RequestBody DadosCadastroProduto dados){
+        return produtoService.createProduto(dados);
     }
 
     @PutMapping("/produto/{id}")
@@ -40,7 +51,9 @@ public class ProdutoController {
 
     @DeleteMapping("/produto/{id}")
     @ApiOperation(value = "Deleta um produto.")
-    public void deleteProduto(@PathVariable Long id){
+    public ResponseEntity deleteProduto(@PathVariable Long id){
         produtoService.deleteProduto(id);
+
+        return ResponseEntity.noContent().build();
     }
 }
